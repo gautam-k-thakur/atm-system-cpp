@@ -19,8 +19,10 @@
 ## How To Run
 
  g++ main.cpp -o atm
+ <br>
  ./atm
 
 ## Status
  work in progress
+ <br>
  Will improve logic, add loops, and fix balance handling in future versions.
