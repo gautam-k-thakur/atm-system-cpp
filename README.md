@@ -9,7 +9,7 @@
 
 ## Current Limitations
  - Login requires exact name match (case-sensitive)
- - Second inout is acceoted without validation
+ - Second input is acceoted without validation
  - Balance is not updated (only calculated)
  - Menu runs only once(no loops yet)
 
