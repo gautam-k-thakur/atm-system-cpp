@@ -1,28 +1,50 @@
 # ATM System (C++)
- A simple console-based ATM simulation built in C++ while learning the basic programming concepts.
+
+A console-based ATM simulation built in C++ while learning core programming concepts like loops, conditionals, and basic system design.
 
 ## Features
- - User name input (basic authentication)
- - Check balance
- - Deposit money
- - Withdraw money
 
-## Current Limitations
- - Login requires exact name match (case-sensitive)
- - Second input is acceoted without validation
- - Balance is not updated (only calculated)
- - Menu runs only once(no loops yet)
+* Account number + PIN authentication (with limited attempts)
+* Check balance
+* Deposit money (updates balance)
+* Withdraw money (with validation)
+* Loop-based menu system (multiple operations)
+* Exit and continue options
 
-## Tech Used 
- - C++
+## Improvements from V1
+
+* Replaced name-based login with account number + PIN
+* Added retry limit for authentication (basic security)
+* Implemented loop-based menu (no longer single-run)
+* Fixed balance logic (now updates correctly)
+* Added input validation for withdrawals
+
+## Tech Used
+
+* C++
 
 ## How To Run
 
- g++ main.cpp -o atm
- <br>
- ./atm
+```bash
+g++ main.cpp -o atm
+./atm
+```
+
+## Current Limitations
+
+* Data is not stored (resets after program ends)
+* Account details are hardcoded
+* No file/database integration
+* Limited input validation (non-numeric input not handled)
 
 ## Status
- work in progress
- <br>
- Will improve logic, add loops, and fix balance handling in future versions.
+
+Work in progress
+
+Next improvements:
+
+* Add functions for better structure
+* Improve input validation
+* Store data using files
+* Enhance UI/UX of console output
+
