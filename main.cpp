@@ -2,92 +2,121 @@
 using namespace std;
 
 int main() {
+    
+    // ===== AUTHENTICATION DATA =====
+    string name{"Gautam Kumar Thakur"};
+    long long account_no;
+    int pin;
 
-    // ====== USER INPUT SECTION ======
-    string name;
+    cout << "--------Unknown Bank Handle Portal--------\n\n";
 
-    cout << "-----Unknown Bank Handle Portal-----\n";
-    cout << "Please Enter Account Holder's Name:\n";
+    // ===== LOGIN ATTEMPTS =====
+    int attempts{1};
 
-    // Using getline to allow full name (with spaces)
-    getline(cin, name);
+    while (attempts <= 3) {
+        cout << "Enter Your Account Number: ";
+        cin >> account_no;
 
-    // ====== AUTHENTICATION CHECK ======
-    // NOTE: Exact match required (case-sensitive)
-    if (name == "Gautam Kumar Thakur") {
-        cout << "Welcome Master " << name << endl;
-    } 
-    else {
-        cout << "User Not Found, Please Try Again!\n";
+        cout << "Enter Your PIN: ";
+        cin >> pin;
 
-        cout << "Please Enter Account Holder's Name:\n";
-        getline(cin, name);
-
-        // ⚠️ Temporary logic:
-        // Second input is accepted without validation
-        cout << "Welcome Master " << name << endl;
+        // Check credentials
+        if (account_no == 1234567890 && pin == 1234) {
+            cout << "Welcome Master " << name << '\n';
+            break;
+        } 
+        else {
+            cout << "Wrong Input, Please Try Again!\n";
+            attempts++;
+        }
     }
 
-    // ====== ATM MENU ======
-    int options;
-    int amount;
-    int Balance = 6000;  // Initial balance (hardcoded)
+    // ===== LOGIN FAILURE =====
+    if (attempts > 3) {
+        cout << "Too Many Wrong Attempts, Please Try Again Later!\n";
+    }
+    else {
 
-    cout << "\nMenu:\n";
-    cout << "1. Check Balance\n";
-    cout << "2. Deposit Money\n";
-    cout << "3. Withdraw Money\n";
-    cout << "4. Exit\n";
+        // ===== ATM VARIABLES =====
+        int amount;
+        int Balance = 6000;
+        int options;
 
-    cout << "Choose Your Option:\n";
-    cin >> options;
+        // ===== MAIN MENU LOOP =====
+        while (true) {
 
-    // ====== MENU HANDLING ======
-    switch(options) {
+            cout << "\nMenu:\n";
+            cout << "1. Check Balance\n";
+            cout << "2. Deposit Money\n";
+            cout << "3. Withdraw Money\n";
+            cout << "4. Exit\n";
 
-        // ====== CHECK BALANCE ======
-        case 1:
-            // ⚠️ Currently prints fixed value instead of updated balance
-            cout << "Your Balance: $6000\n";
-            break;
+            cout << "Choose Your Option:\n";
+            cin >> options;
 
-        // ====== DEPOSIT ======
-        case 2:
-            cout << "Enter Amount To Deposit:\n";
-            cin >> amount;
-
-            // ⚠️ Balance not updated, only calculated
-            cout << "Your New Balance: $" << Balance + amount << endl;
-            break;
-
-        // ====== WITHDRAW ======
-        case 3: {
-            cout << "Enter Amount To Withdraw:\n";
-            cin >> amount;
-
-            // Basic validation checks
-            if (amount < Balance && amount > 0) {
-                // ⚠️ Balance not updated, only calculated
-                cout << "Your New Balance: $" << Balance - amount << endl;
+            // Exit option
+            if (options == 4) {
+                cout << "Thankyou For Using Our Services!\n";
+                break;
             }
-            else if (amount > Balance) {
-                cout << "Insufficient Balance!\n";
+
+            // ===== MENU HANDLING =====
+            switch (options) {
+
+                case 1:
+                    // Check balance
+                    cout << "Your Balance: " << Balance << '\n';
+                    break;
+
+                case 2:
+                    // Deposit money
+                    cout << "Enter Amount To Deposit:\n";
+                    cin >> amount;
+
+                    Balance += amount;
+                    cout << "Your New Balance: $" << Balance << '\n';
+                    break;
+
+                case 3:
+                    // Withdraw money
+                    cout << "Enter Amount To Withdraw:\n";
+                    cin >> amount;
+
+                    if (amount > 0 && amount <= Balance) {
+                        Balance -= amount;
+                        cout << "Your New Balance: $" << Balance << '\n';
+                    }
+                    else if (amount > Balance) {
+                        cout << "Insufficient Balance!\n";
+                    }
+                    else {
+                        cout << "Invalid Input!\n";
+                    }
+                    break;
+
+                default:
+                    cout << "INVALID OPTION!\n";
+            }
+
+            // ===== CONTINUE OPTION =====
+            char choice;
+
+            cout << "Do You Want To Continue(Y/N): ";
+            cin >> choice;
+
+            if (choice == 'N' || choice == 'n') {
+                cout << "Thankyou For Using Our Services!\n";
+                break;
+            }
+            else if (choice == 'Y' || choice == 'y') {
+                // continue loop
             }
             else {
-                cout << "Invalid Input!\n";
+                cout << "Invalid Choice\n";
+                break;
             }
         }
-        break;
-
-        // ====== EXIT ======
-        case 4:
-            cout << "Thankyou For Using Our Services!\n";
-            break;
-
-        // ====== INVALID INPUT ======
-        default:
-            cout << "INVALID OPTION!\n";
     }
-
+    
     return 0;
 }
